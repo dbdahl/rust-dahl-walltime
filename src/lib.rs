@@ -125,6 +125,6 @@ impl TicToc {
         if self.running {
             panic!("Clock is running.");
         }
-        (self.lapse as f64) / ((1000 * 1000 * 1000) as f64)
+        (self.lapse as f64) / (1000_000_000 as f64)
     }
 }
