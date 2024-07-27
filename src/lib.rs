@@ -84,6 +84,12 @@ impl EchoTimer {
     }
 }
 
+impl Default for EchoTimer {
+    fn default() -> Self {
+        Self::new()
+    }
+}
+
 #[allow(dead_code)]
 pub struct TicToc {
     start: SystemTime,
@@ -121,10 +127,20 @@ impl TicToc {
         self.running = false;
     }
 
+    pub fn add(&mut self, mini: Self) {
+        self.lapse += mini.lapse;
+    }
+
     pub fn as_secs_f64(&self) -> f64 {
         if self.running {
             panic!("Clock is running.");
         }
-        (self.lapse as f64) / (1000_000_000 as f64)
+        (self.lapse as f64) / 1_000_000_000_f64
+    }
+}
+
+impl Default for TicToc {
+    fn default() -> Self {
+        Self::new()
     }
 }
